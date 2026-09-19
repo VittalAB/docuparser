@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docuparser"
+version = "0.1.0"
+description = "Modular, extensible document intelligence parser with OCR, PII masking, table extraction, vector embeddings, and GLiNER Knowledge Graph extraction."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+dependencies = [
+    "docling>=2.12.0",
+    "pydantic>=2.0.0",
+    "pandas>=2.0.0",
+    "httpx>=0.24.0",
+    "python-dotenv>=1.0.0"
+]
+
+[project.optional-dependencies]
+pii = [
+    "presidio-analyzer>=2.2.0",
+    "presidio-anonymizer>=2.2.0"
+]
+embeddings = [
+    "sentence-transformers>=2.2.0"
+]
+graph = [
+    "gliner2[local]>=2.0.0"
+]
+all = [
+    "presidio-analyzer>=2.2.0",
+    "presidio-anonymizer>=2.2.0",
+    "sentence-transformers>=2.2.0",
+    "gliner2[local]>=2.0.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["docuparser*"]
